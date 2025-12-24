@@ -13,7 +13,7 @@
         * {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            box-sizing: border-box;m
         }
         
         html, body {
@@ -77,16 +77,17 @@
             position: absolute;
             background: linear-gradient(135deg, #ff69b4, #ff1493);
             color: white;
-            padding: 20px;
-            border-radius: 20px;
-            box-shadow: 0 8px 32px rgba(255, 105, 180, 0.5);
-            border: 3px solid rgba(255, 255, 255, 0.8);
+            padding: 2vw;
+            border-radius: 2vw;
+            box-shadow: 0 1vw 4vw rgba(255, 105, 180, 0.5);
+            border: 0.3vw solid rgba(255, 255, 255, 0.8);
             animation: popIn 0.5s ease-out, float 3s ease-in-out infinite;
             cursor: pointer;
             z-index: 1000;
-            max-width: 250px;
+            max-width: 40vw;
             text-align: center;
             font-weight: bold;
+            font-size: 1.5vw;
         }
         
         @keyframes popIn {
@@ -102,17 +103,17 @@
         /* 关闭按钮 */
         .close-btn {
             position: absolute;
-            top: 5px;
-            right: 10px;
-            font-size: 18px;
+            top: 0.5vw;
+            right: 1vw;
+            font-size: 1.5vw;
             font-weight: bold;
             background: rgba(255, 255, 255, 0.3);
             border: none;
             color: white;
             cursor: pointer;
             border-radius: 50%;
-            width: 25px;
-            height: 25px;
+            width: 3vw;
+            height: 3vw;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -210,8 +211,8 @@
         /* 圣诞袜样式 */
         .christmas-sock {
             position: absolute;
-            width: 150px;
-            height: 200px;
+            width: 12vw;
+            height: 16vw;
             background-image: url('https://i.imgur.com/IEJ4K07.png');
             background-size: contain;
             background-repeat: no-repeat;
@@ -226,16 +227,17 @@
             position: absolute;
             background: linear-gradient(135deg, #9370db, #8a2be2);
             color: white;
-            padding: 20px;
-            border-radius: 20px;
-            box-shadow: 0 8px 32px rgba(147, 112, 219, 0.5);
-            border: 3px solid rgba(255, 255, 255, 0.8);
+            padding: 2vw;
+            border-radius: 2vw;
+            box-shadow: 0 1vw 4vw rgba(147, 112, 219, 0.5);
+            border: 0.3vw solid rgba(255, 255, 255, 0.8);
             animation: popIn 0.5s ease-out, float 3s ease-in-out infinite;
             cursor: pointer;
             z-index: 1000;
-            max-width: 250px;
+            max-width: 40vw;
             text-align: center;
             font-weight: bold;
+            font-size: 1.5vw;
         }
         
         /* 最终提示文字样式 */
@@ -263,8 +265,8 @@
         /* 驯鹿样式 */
         .reindeer {
             position: fixed;
-            width: 600px;
-            height: 400px;
+            width: 40vw;
+            height: 27vw;
             background-image: url('https://i.imgur.com/KqcWzK9.png');
             background-size: contain;
             background-repeat: no-repeat;
@@ -272,7 +274,7 @@
             z-index: 100;
             top: 50%;
             transform: translateY(-50%);
-            right: -600px;
+            right: -40vw;
             opacity: 0;
             /* 尝试处理图片背景，增强与页面背景的融合 */
             mix-blend-mode: multiply;
@@ -283,7 +285,7 @@
         @keyframes reindeerMove {
             0% {
                 opacity: 1;
-                right: -300px;
+                right: -20vw;
             }
             100% {
                 opacity: 1;
@@ -467,7 +469,7 @@
                 snowflake.textContent = '❄';
                 snowflake.style.left = Math.random() * 100 + 'vw';
                 snowflake.style.animationDuration = (Math.random() * 3 + 2) + 's';
-                snowflake.style.fontSize = (Math.random() * 15 + 10) + 'px';
+                snowflake.style.fontSize = (Math.random() * 1 + 0.5) + 'vw';
                 snowContainer.appendChild(snowflake);
             }
         }
