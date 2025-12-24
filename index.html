@@ -1037,21 +1037,16 @@
             // 检测设备方向，显示/隐藏竖屏提示
             const portraitPrompt = document.getElementById('portrait-prompt');
             
+            // 使用简单可靠的宽高比检测，适用于所有设备
             function checkOrientation() {
-                let isPortrait = false;
-                
-                // 优先使用 window.orientation 属性（移动设备）
-                if (typeof window.orientation !== 'undefined') {
-                    // orientation 为 0 或 180 表示竖屏
-                    isPortrait = (window.orientation === 0 || window.orientation === 180);
-                } else {
-                    // 回退到使用宽高比（桌面设备）
-                    isPortrait = (window.innerWidth < window.innerHeight);
-                }
+                // 简单的宽高比检测：宽度小于高度为竖屏
+                const isPortrait = window.innerWidth < window.innerHeight;
                 
                 if (isPortrait) {
                     // 竖屏状态，显示提示
                     portraitPrompt.classList.remove('hidden');
+                    // 确保提示显示在最上层
+                    portraitPrompt.style.zIndex = '9999';
                 } else {
                     // 横屏状态，隐藏提示
                     portraitPrompt.classList.add('hidden');
@@ -1061,11 +1056,16 @@
             // 初始检测
             checkOrientation();
             
-            // 监听设备方向变化事件（移动设备）
-            window.addEventListener('orientationchange', checkOrientation);
-            
-            // 监听窗口大小变化，提高可靠性
+            // 监听窗口大小变化 - 最可靠的方式
             window.addEventListener('resize', checkOrientation);
+            
+            // 监听现代浏览器的屏幕方向变化事件
+            if (typeof screen.orientation !== 'undefined') {
+                screen.addEventListener('orientationchange', checkOrientation);
+            }
+            
+            // 监听设备方向变化事件（兼容旧设备）
+            window.addEventListener('orientationchange', checkOrientation);
         };
     </script>
 </body>
