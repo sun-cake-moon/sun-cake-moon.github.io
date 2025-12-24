@@ -58,95 +58,6 @@
             100% { transform: rotate(180deg); }
         }
         
-        /* 响应式字体调整 - 优化手机端显示 */
-        
-        /* 小屏幕设备（平板/手机） */
-        @media (max-width: 768px) {
-            /* 标题字体大小 */
-            .title {
-                font-size: 5em !important;
-            }
-            
-            /* 点击提示字体大小 */
-            .click-prompt {
-                font-size: 1.2em !important;
-            }
-            
-            /* 新提示文字 */
-            .new-prompt {
-                font-size: 3em !important;
-            }
-            
-            /* 最终提示文字 */
-            .final-prompt {
-                font-size: 1.8em !important;
-            }
-            
-            /* 安检文字 */
-            .final-prompt {
-                font-size: 1.8em !important;
-            }
-        }
-        
-        /* 超小屏幕设备（手机） */
-        @media (max-width: 480px) {
-            /* 标题字体大小 */
-            .title {
-                font-size: 3.5em !important;
-            }
-            
-            /* 点击提示字体大小 */
-            .click-prompt {
-                font-size: 1em !important;
-            }
-            
-            /* 新提示文字 */
-            .new-prompt {
-                font-size: 2em !important;
-            }
-            
-            /* 最终提示文字 */
-            .final-prompt {
-                font-size: 1.4em !important;
-            }
-            
-            /* 安检文字 */
-            .final-prompt {
-                font-size: 1.4em !important;
-            }
-        }
-        
-        /* 超小屏幕竖屏设备 */
-        @media (max-width: 375px) {
-            /* 标题字体大小 */
-            .title {
-                font-size: 3em !important;
-            }
-            
-            /* 新提示文字 */
-            .new-prompt {
-                font-size: 1.8em !important;
-            }
-            
-            /* 最终提示文字 */
-            .final-prompt {
-                font-size: 1.2em !important;
-            }
-        }
-        
-        /* 横屏手机优化 */
-        @media (max-width: 768px) and (orientation: landscape) {
-            /* 标题字体大小 */
-            .title {
-                font-size: 4em !important;
-            }
-            
-            /* 新提示文字 */
-            .new-prompt {
-                font-size: 2.5em !important;
-            }
-        }
-        
         /* 雪花背景 */
         .snowflake {
             position: absolute;
@@ -207,14 +118,14 @@
             justify-content: center;
         }
         
-        /* 标题 - 使用艺术字体，字体调大3倍 */
+        /* 标题 - 使用艺术字体，等比例缩放 */
         .title {
             position: absolute;
             top: 40%; /* 上移，为下方点击提示留出空间 */
             left: 50%;
             transform: translate(-50%, -50%);
             color: #ffffff; /* 提高字体亮度，使用纯白色 */
-            font-size: 12em;
+            font-size: 8vw; /* 使用视口宽度单位，等比例缩放 */
             text-align: center;
             text-shadow: 0 0 10px rgba(255, 219, 232, 0.8); /* 保留周围光效 */
             z-index: 10;
@@ -236,7 +147,7 @@
             left: 50%;
             transform: translate(-50%, -50%) scale(0); /* 初始缩放为0，隐藏状态 */
             color: #ff69b4; /* 亮粉色 */
-            font-size: 2em; /* 大小缩小一倍 */
+            font-size: 2vw; /* 使用视口宽度单位，等比例缩放 */
             text-align: center;
             z-index: 15;
             font-family: 'Cookie', cursive, 'Dancing Script', serif; /* 更换为更艺术的Cookie字体 */
@@ -252,7 +163,7 @@
             left: 50%;
             transform: translate(-50%, -50%);
             color: #ff69b4;
-            font-size: 6em;
+            font-size: 5vw; /* 使用视口宽度单位，等比例缩放 */
             text-align: center;
             z-index: 20;
             font-family: 'Brush Script MT', cursive, serif;
@@ -334,7 +245,7 @@
             left: 50%;
             transform: translate(-50%, -50%);
             color: #ff69b4;
-            font-size: 4em;
+            font-size: 4vw;
             text-align: center;
             z-index: 40;
             font-family: 'Brush Script MT', cursive, serif;
@@ -756,7 +667,7 @@
                 securityText.style.left = '50%';
                 securityText.style.transform = 'translate(-50%, -50%)';
                 securityText.style.opacity = '1';
-                securityText.style.fontSize = '5em';
+                securityText.style.fontSize = '5vw';
                 securityText.style.color = '#ff69b4';
                 securityText.style.fontFamily = 'Brush Script MT, cursive, serif';
                 securityText.style.zIndex = '100';
@@ -824,7 +735,7 @@
                     // 创建数字元素
                     const numberElement = document.createElement('div');
                     numberElement.textContent = countdownNumbers[currentIndex];
-                    numberElement.style.fontSize = '8em';
+                    numberElement.style.fontSize = '8vw';
                     numberElement.style.color = '#ff69b4';
                     numberElement.style.fontFamily = 'Brush Script MT, cursive, serif';
                     numberElement.style.opacity = '0';
@@ -864,7 +775,7 @@
                 finalText.style.left = '50%';
                 finalText.style.transform = 'translate(-50%, -50%)';
                 finalText.style.opacity = '1';
-                finalText.style.fontSize = '5em';
+                finalText.style.fontSize = '5vw';
                 finalText.style.color = '#ff69b4';
                 finalText.style.fontFamily = 'Brush Script MT, cursive, serif';
                 finalText.style.zIndex = '100';
