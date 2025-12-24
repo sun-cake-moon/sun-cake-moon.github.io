@@ -1038,7 +1038,18 @@
             const portraitPrompt = document.getElementById('portrait-prompt');
             
             function checkOrientation() {
-                if (window.innerWidth < window.innerHeight) {
+                let isPortrait = false;
+                
+                // 优先使用 window.orientation 属性（移动设备）
+                if (typeof window.orientation !== 'undefined') {
+                    // orientation 为 0 或 180 表示竖屏
+                    isPortrait = (window.orientation === 0 || window.orientation === 180);
+                } else {
+                    // 回退到使用宽高比（桌面设备）
+                    isPortrait = (window.innerWidth < window.innerHeight);
+                }
+                
+                if (isPortrait) {
                     // 竖屏状态，显示提示
                     portraitPrompt.classList.remove('hidden');
                 } else {
@@ -1050,7 +1061,10 @@
             // 初始检测
             checkOrientation();
             
-            // 监听窗口大小变化（设备旋转）
+            // 监听设备方向变化事件（移动设备）
+            window.addEventListener('orientationchange', checkOrientation);
+            
+            // 监听窗口大小变化，提高可靠性
             window.addEventListener('resize', checkOrientation);
         };
     </script>
