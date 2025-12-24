@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>圣诞祝福</title>
     <style>
         * {
@@ -18,6 +18,71 @@
             height: 100vh;
             position: relative;
             width: 100vw;
+            font-size: 16px;
+        }
+        
+        /* 竖屏提示 */
+        .portrait-prompt {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 154, 158, 0.95);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            z-index: 9999;
+            transition: opacity 0.3s ease-out;
+        }
+        
+        .portrait-prompt.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        /* 旋转图标 */
+        .rotate-icon {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            animation: rotate 2s ease-in-out infinite;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(180deg); }
+        }
+        
+        /* 响应式字体调整 */
+        @media (max-width: 768px) {
+            .title {
+                font-size: 8em !important;
+            }
+            
+            .click-prompt {
+                font-size: 1.5em !important;
+            }
+            
+            .final-prompt {
+                font-size: 2em !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .title {
+                font-size: 6em !important;
+            }
+            
+            .click-prompt {
+                font-size: 1.2em !important;
+            }
+            
+            .final-prompt {
+                font-size: 1.5em !important;
+            }
         }
         
         /* 雪花背景 */
@@ -351,6 +416,12 @@
     </style>
 </head>
 <body>
+    <!-- 竖屏提示 -->
+    <div class="portrait-prompt" id="portrait-prompt">
+        <div class="rotate-icon">🔄</div>
+        <div>建议横屏查看以获得最佳体验</div>
+    </div>
+    
     <h1 class="title" id="christmas-title"> Merry Christmas！</h1>
     <div class="click-prompt" id="click-prompt">Click👆</div>
     <div class="new-prompt" id="new-prompt">圣诞快乐要来咯，抓住它！！！</div>
@@ -962,6 +1033,25 @@
             
             // 为标题添加鼠标指针样式，指示可点击
             christmasTitle.style.cursor = 'pointer';
+            
+            // 检测设备方向，显示/隐藏竖屏提示
+            const portraitPrompt = document.getElementById('portrait-prompt');
+            
+            function checkOrientation() {
+                if (window.innerWidth < window.innerHeight) {
+                    // 竖屏状态，显示提示
+                    portraitPrompt.classList.remove('hidden');
+                } else {
+                    // 横屏状态，隐藏提示
+                    portraitPrompt.classList.add('hidden');
+                }
+            }
+            
+            // 初始检测
+            checkOrientation();
+            
+            // 监听窗口大小变化（设备旋转）
+            window.addEventListener('resize', checkOrientation);
         };
     </script>
 </body>
