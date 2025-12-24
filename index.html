@@ -58,32 +58,92 @@
             100% { transform: rotate(180deg); }
         }
         
-        /* 响应式字体调整 */
-        @media (max-width: 768px) {
-            .title {
-                font-size: 8em !important;
-            }
-            
-            .click-prompt {
-                font-size: 1.5em !important;
-            }
-            
-            .final-prompt {
-                font-size: 2em !important;
-            }
-        }
+        /* 响应式字体调整 - 优化手机端显示 */
         
-        @media (max-width: 480px) {
+        /* 小屏幕设备（平板/手机） */
+        @media (max-width: 768px) {
+            /* 标题字体大小 */
             .title {
-                font-size: 6em !important;
+                font-size: 5em !important;
             }
             
+            /* 点击提示字体大小 */
             .click-prompt {
                 font-size: 1.2em !important;
             }
             
+            /* 新提示文字 */
+            .new-prompt {
+                font-size: 3em !important;
+            }
+            
+            /* 最终提示文字 */
             .final-prompt {
-                font-size: 1.5em !important;
+                font-size: 1.8em !important;
+            }
+            
+            /* 安检文字 */
+            .final-prompt {
+                font-size: 1.8em !important;
+            }
+        }
+        
+        /* 超小屏幕设备（手机） */
+        @media (max-width: 480px) {
+            /* 标题字体大小 */
+            .title {
+                font-size: 3.5em !important;
+            }
+            
+            /* 点击提示字体大小 */
+            .click-prompt {
+                font-size: 1em !important;
+            }
+            
+            /* 新提示文字 */
+            .new-prompt {
+                font-size: 2em !important;
+            }
+            
+            /* 最终提示文字 */
+            .final-prompt {
+                font-size: 1.4em !important;
+            }
+            
+            /* 安检文字 */
+            .final-prompt {
+                font-size: 1.4em !important;
+            }
+        }
+        
+        /* 超小屏幕竖屏设备 */
+        @media (max-width: 375px) {
+            /* 标题字体大小 */
+            .title {
+                font-size: 3em !important;
+            }
+            
+            /* 新提示文字 */
+            .new-prompt {
+                font-size: 1.8em !important;
+            }
+            
+            /* 最终提示文字 */
+            .final-prompt {
+                font-size: 1.2em !important;
+            }
+        }
+        
+        /* 横屏手机优化 */
+        @media (max-width: 768px) and (orientation: landscape) {
+            /* 标题字体大小 */
+            .title {
+                font-size: 4em !important;
+            }
+            
+            /* 新提示文字 */
+            .new-prompt {
+                font-size: 2.5em !important;
             }
         }
         
