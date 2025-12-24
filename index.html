@@ -26,8 +26,8 @@
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            width: 100vw;
+            height: 100vh;
             background: rgba(255, 154, 158, 0.95);
             color: white;
             display: flex;
@@ -36,12 +36,18 @@
             justify-content: center;
             font-size: 2rem;
             z-index: 9999;
+            opacity: 1;
+            pointer-events: all;
             transition: opacity 0.3s ease-out;
+            /* 确保在所有情况下都显示 */
+            display: flex !important;
         }
         
         .portrait-prompt.hidden {
             opacity: 0;
             pointer-events: none;
+            /* 确保隐藏后不占空间 */
+            display: flex !important;
         }
         
         /* 旋转图标 */
@@ -1034,38 +1040,52 @@
             // 为标题添加鼠标指针样式，指示可点击
             christmasTitle.style.cursor = 'pointer';
             
-            // 检测设备方向，显示/隐藏竖屏提示
+            // 检测设备方向，显示/隐藏竖屏提示 - 针对微信WebView优化
             const portraitPrompt = document.getElementById('portrait-prompt');
             
-            // 使用简单可靠的宽高比检测，适用于所有设备
+            // 保存上次检测结果，避免不必要的DOM操作
+            let lastOrientation = '';
+            
             function checkOrientation() {
-                // 简单的宽高比检测：宽度小于高度为竖屏
-                const isPortrait = window.innerWidth < window.innerHeight;
+                // 获取当前宽高
+                const width = window.innerWidth;
+                const height = window.innerHeight;
                 
-                if (isPortrait) {
-                    // 竖屏状态，显示提示
-                    portraitPrompt.classList.remove('hidden');
-                    // 确保提示显示在最上层
-                    portraitPrompt.style.zIndex = '9999';
-                } else {
+                // 简单的宽高比检测：宽度大于高度为横屏
+                const isLandscape = width > height;
+                
+                if (isLandscape) {
                     // 横屏状态，隐藏提示
-                    portraitPrompt.classList.add('hidden');
+                    if (lastOrientation !== 'landscape') {
+                        portraitPrompt.style.opacity = '0';
+                        portraitPrompt.style.pointerEvents = 'none';
+                        portraitPrompt.style.zIndex = '-1';
+                        lastOrientation = 'landscape';
+                    }
+                } else {
+                    // 竖屏状态，显示提示
+                    if (lastOrientation !== 'portrait') {
+                        portraitPrompt.style.opacity = '1';
+                        portraitPrompt.style.pointerEvents = 'all';
+                        portraitPrompt.style.zIndex = '9999';
+                        lastOrientation = 'portrait';
+                    }
                 }
             }
             
-            // 初始检测
+            // 立即执行一次检测
             checkOrientation();
             
-            // 监听窗口大小变化 - 最可靠的方式
-            window.addEventListener('resize', checkOrientation);
+            // 高频检测，针对微信WebView优化
+            // 微信WebView的window.innerWidth/innerHeight更新可能有延迟，需要更高频率检测
+            setInterval(checkOrientation, 100);
             
-            // 监听现代浏览器的屏幕方向变化事件
+            // 同时保留事件监听，提高可靠性
+            window.addEventListener('resize', checkOrientation);
+            window.addEventListener('orientationchange', checkOrientation);
             if (typeof screen.orientation !== 'undefined') {
                 screen.addEventListener('orientationchange', checkOrientation);
             }
-            
-            // 监听设备方向变化事件（兼容旧设备）
-            window.addEventListener('orientationchange', checkOrientation);
         };
     </script>
 </body>
