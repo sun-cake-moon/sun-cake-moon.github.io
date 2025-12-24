@@ -2,7 +2,11 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- 微信X5内核专属配置 -->
+    <meta name="x5-orientation" content="auto">
+    <meta name="x5-fullscreen" content="true">
+    <!-- 优化的viewport配置 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>圣诞祝福</title>
     <style>
         * {
@@ -21,7 +25,7 @@
             font-size: 16px;
         }
         
-        /* 竖屏提示 - 使用CSS媒体查询实现 */
+        /* 竖屏提示 - 使用JavaScript控制显示/隐藏 */
         .portrait-prompt {
             position: fixed;
             top: 0;
@@ -39,7 +43,6 @@
             opacity: 1;
             pointer-events: all;
             transition: opacity 0.3s ease-out;
-            /* 默认显示，竖屏时显示 */
         }
         
         /* 旋转图标 */
@@ -52,24 +55,6 @@
         @keyframes rotate {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(180deg); }
-        }
-        
-        /* CSS媒体查询：横屏时隐藏提示 */
-        @media (orientation: landscape) {
-            .portrait-prompt {
-                opacity: 0 !important;
-                pointer-events: none !important;
-                z-index: -1 !important;
-            }
-        }
-        
-        /* 针对不同横屏宽度的补充媒体查询 */
-        @media (min-aspect-ratio: 1/1) {
-            .portrait-prompt {
-                opacity: 0 !important;
-                pointer-events: none !important;
-                z-index: -1 !important;
-            }
         }
         
         /* 响应式字体调整 */
@@ -1050,8 +1035,70 @@
             // 为标题添加鼠标指针样式，指示可点击
             christmasTitle.style.cursor = 'pointer';
             
-            // 竖屏提示现在通过CSS媒体查询处理，无需JavaScript检测
-            // 这种方式在微信WebView中更加可靠
+            // 微信X5内核方向检测实现
+            const portraitPrompt = document.getElementById('portrait-prompt');
+            let resizeTimeout = null;
+            let lastOrientation = '';
+            
+            // 判断是否为微信环境
+            const isWeChat = navigator.userAgent.indexOf('MicroMessenger') > -1;
+            
+            // 宽高比容错值，防止异形屏误判
+            const ASPECT_RATIO_THRESHOLD = 1.05;
+            
+            // 方向检测函数 - 带防抖
+            function checkOrientation() {
+                // 防抖处理
+                clearTimeout(resizeTimeout);
+                
+                resizeTimeout = setTimeout(() => {
+                    // 计算宽高比
+                    const width = window.innerWidth;
+                    const height = window.innerHeight;
+                    const aspectRatio = width / height;
+                    
+                    // 判断方向：宽高比大于等于容错值为横屏
+                    const isLandscape = aspectRatio >= ASPECT_RATIO_THRESHOLD;
+                    
+                    if (isLandscape) {
+                        // 横屏状态，隐藏提示
+                        if (lastOrientation !== 'landscape') {
+                            portraitPrompt.style.opacity = '0';
+                            portraitPrompt.style.pointerEvents = 'none';
+                            portraitPrompt.style.zIndex = '-1';
+                            lastOrientation = 'landscape';
+                        }
+                    } else {
+                        // 竖屏状态，显示提示
+                        if (lastOrientation !== 'portrait') {
+                            portraitPrompt.style.opacity = '1';
+                            portraitPrompt.style.pointerEvents = 'all';
+                            portraitPrompt.style.zIndex = '9999';
+                            lastOrientation = 'portrait';
+                        }
+                    }
+                }, 200); // 防抖延迟200ms
+            }
+            
+            // 微信环境优化：强制重绘，解决X5内核渲染延迟
+            if (isWeChat) {
+                setTimeout(() => {
+                    const body = document.body;
+                    // 强制重绘技巧：隐藏→触发重排→显示
+                    body.style.display = 'none';
+                    void body.offsetHeight; // 触发重排
+                    body.style.display = '';
+                }, 300); // 页面加载300ms后执行
+            }
+            
+            // 初始检测
+            checkOrientation();
+            
+            // 监听resize事件 - 最可靠的方式
+            window.addEventListener('resize', checkOrientation);
+            
+            // 监听orientationchange事件 - 补充
+            window.addEventListener('orientationchange', checkOrientation);
         };
     </script>
 </body>
