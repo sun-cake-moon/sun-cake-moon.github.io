@@ -5,8 +5,9 @@
     <!-- 微信X5内核专属配置 -->
     <meta name="x5-orientation" content="auto">
     <meta name="x5-fullscreen" content="true">
-    <!-- 优化的viewport配置 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="x5-page-mode" content="none">
+    <!-- 优化的viewport配置，添加minimum-scale=1.0 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>圣诞祝福</title>
     <style>
         * {
@@ -1035,13 +1036,18 @@
             // 为标题添加鼠标指针样式，指示可点击
             christmasTitle.style.cursor = 'pointer';
             
-            // 微信X5内核方向检测实现
+            // 微信X5内核方向检测实现 - 针对手机微信优化
             const portraitPrompt = document.getElementById('portrait-prompt');
             let resizeTimeout = null;
             let lastOrientation = '';
+            let orientationTimer = null;
             
             // 判断是否为微信环境
             const isWeChat = navigator.userAgent.indexOf('MicroMessenger') > -1;
+            // 判断是否为iOS
+            const isiOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+            // 判断是否为安卓
+            const isAndroid = navigator.userAgent.indexOf('Android') > -1;
             
             // 宽高比容错值，防止异形屏误判
             const ASPECT_RATIO_THRESHOLD = 1.05;
@@ -1052,9 +1058,9 @@
                 clearTimeout(resizeTimeout);
                 
                 resizeTimeout = setTimeout(() => {
-                    // 计算宽高比
-                    const width = window.innerWidth;
-                    const height = window.innerHeight;
+                    // 使用document.documentElement.clientWidth/clientHeight替代window.innerWidth/innerHeight
+                    const width = document.documentElement.clientWidth;
+                    const height = document.documentElement.clientHeight;
                     const aspectRatio = width / height;
                     
                     // 判断方向：宽高比大于等于容错值为横屏
@@ -1088,14 +1094,51 @@
                     body.style.display = 'none';
                     void body.offsetHeight; // 触发重排
                     body.style.display = '';
+                    
+                    // 微信环境下延迟500ms首次检测
+                    setTimeout(() => {
+                        checkOrientation();
+                    }, 500);
                 }, 300); // 页面加载300ms后执行
             }
             
-            // 初始检测
-            checkOrientation();
+            // iOS微信：监听screen.orientation.angle
+            if (isiOS && isWeChat && typeof screen.orientation !== 'undefined') {
+                screen.addEventListener('orientationchange', () => {
+                    // 检测角度变化，0或180为竖屏，其他为横屏
+                    if (screen.orientation.angle === 0 || screen.orientation.angle === 180) {
+                        // 竖屏
+                        lastOrientation = ''; // 清空上次状态，确保重新判断
+                        checkOrientation();
+                    } else {
+                        // 横屏
+                        if (lastOrientation !== 'landscape') {
+                            portraitPrompt.style.opacity = '0';
+                            portraitPrompt.style.pointerEvents = 'none';
+                            portraitPrompt.style.zIndex = '-1';
+                            lastOrientation = 'landscape';
+                        }
+                    }
+                });
+            }
             
-            // 监听resize事件 - 最可靠的方式
+            // 安卓微信：添加500ms定时器兜底
+            if (isAndroid && isWeChat) {
+                orientationTimer = setInterval(() => {
+                    checkOrientation();
+                }, 500); // 每500ms检查一次
+            }
+            
+            // 初始检测
+            setTimeout(() => {
+                checkOrientation();
+            }, 500); // 页面加载延迟500ms首次检测
+            
+            // 监听resize事件 - 主要检测方式
             window.addEventListener('resize', checkOrientation);
+            
+            // 监听touchstart事件 - 补充检测
+            document.addEventListener('touchstart', checkOrientation);
             
             // 监听orientationchange事件 - 补充
             window.addEventListener('orientationchange', checkOrientation);
