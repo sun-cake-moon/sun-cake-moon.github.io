@@ -529,9 +529,9 @@
         
         .end-line {
             font-family: 'Brush Script MT', cursive, serif;
-            font-size: 4vw;
+            font-size: 8vw;
             color: #ff69b4;
-            margin: 10px 0;
+            margin: 20px 0;
         }
         
         /* 结束文字字符样式 */
@@ -1029,26 +1029,157 @@
             
             // 处理姓名分支
             function handleNameBranch(name) {
-                if (name === '陈玉轩') {
-                    // 显示感谢话语
-                    showThankYouMessage();
+                if (name === '陈玉轩' || name === '陈品地' || name === '公主殿下' || name === '袁西冉' || name === '欧阳如景' || name === '蔡思涵' || name === '毛乾慧' || name === '刘瑜婷' || name === '曹小丽' || name === '罗嘉怡' || name === '周倩' || name === '王璐瑶' || name === '百折') {
+                    // 显示对应姓名的感谢话语
+                    showThankYouMessage(name);
                 } else {
-                    // 其他分支可以在这里添加
-                    console.log('其他姓名分支');
+                    // 显示默认祝福语
+                    showThankYouMessage('default');
                 }
             }
             
             // 显示感谢话语
-            function showThankYouMessage() {
-                const message = `回想起来，这一年我们好像做了很多大事，又好像全是些没意义的小事。 
+            function showThankYouMessage(name) {
+                let message;
+                let isLongMessage = false;
+                
+                if (name === '陈玉轩') {
+                    message = `回想起来，这一年我们好像做了很多大事，又好像全是些没意义的小事。 
  
  我们在雪地里深一脚浅一脚，在博物馆里装模作样，在图书馆里集体摸鱼，还在半夜仰着脖子等那轮月亮…… 
  
  但我发现，比起这些事本身，我更记得和你在一起时的底噪——是你的笑声，是不知为何疯狂互刷的表情包，是那些莫名其妙的默契。 感谢你陪我虚度了这么多光阴，让这些琐碎的日子闪闪发光。 圣诞快乐！以后，请继续出现在我的冒险清单里吧。`;
+                } else if (name === '陈品地') {
+                    message = `致千里之外的你： 
+ 
+ 谁能想到当年坐我旁边的那个小姑娘，现在竟然成了精通历史、纵横游戏圈、还能随时变装的宝藏Girl？ 
+ 
+ 虽然今年咱们又是各看各的雪，各吃各的饭，甚至连半夜赏月都要对着时差（哦不对，没时差，只有距离感），但只要想到在峡谷里还有你这个大腿可以抱，我就觉得这异地友谊还能再续费五百年。 
+ 
+ 谢谢你在这个无聊的世界里陪我赛博流浪。虽然没能线下一起疯，但你的梗已经跨越千里精准打击到我了。圣诞快乐！下次见面（如果有那天的话），记得别带历史书，带我上分就行！`;
+                } else if (name === '公主殿下') {
+                    message = `圣诞快乐呀，我心中最棒的‘赛博搭子’～ 
+ 最近一直在回味你唱歌的声音，真的好空灵、好有质感哦～每次在麦序上听到你开嗓，我都觉得那是治愈灵魂的良药，简直是老天爷追着喂饭吃的‘在逃歌姬’嘛。不像我，只会缩在下面疯狂刷礼物扣666，实名羡慕你的嗓子是被天使吻过呢～ 
+ 不过呢，我也有一点点小小的困惑…… 
+ 为什么这么好听的声音，一到打狼人杀的时候，就会变成那种震耳欲聋的‘正义咆哮’呢？哎呀，看到你因为队友太菜而红温破防、语速快到冒烟的样子，我真的好心疼你的嗓子哦。要是把这么完美的嗓子喊哑了，我会难过得睡不着的～那些‘愚民’不配让你这么动气啦，放轻松嘛，小江～ 
+ 新的一年，我帮你想好愿望啦： 
+ 剧本杀场场拿MVP，拿最顶的本，carry最全的场，你永远是我的最佳搭子！ 
+ 狼人杀的时候，哪怕队友再笨，也要保持‘歌姬’的高雅仪态哦，咱们不跟他们一般见识，血压稳住，优雅输出～ 
+ 记得多唱歌给我听呀，毕竟我的耳朵已经被你养刁了，听别人的歌都觉得是在吃粗粮呢。 
+ 哪怕咱们隔着千里，我也要永远锁死你的麦位！圣诞快乐，我那人美声甜但脾气爆的宝藏搭子～`;
+                    isLongMessage = true;
+                } else if (name === '袁西冉') {
+                    message = `嘿，老同桌，圣诞快乐。 
+  
+ 隔着千里，看你发出的那些画作和精心准备的Cos，真想跨过屏幕给你一个大大的赞。那些细腻的线条和鲜活的角色，让我看到了你心里藏着的那个宏大又灿烂的世界。 
+  
+ 我想说，你真的很勇敢，也真的很棒。那些曾经试图压碎你的阴影，最终都成了你笔下光影的注脚。谢谢你没有弄丢那份对美的追求，依然愿意热烈地出去玩、去感受这个世界。愿你在这个圣诞，被所有的温柔环绕。你只管心怀锦绣，向阳而生，我们都会在那片名为‘未来’的旷野上，再次灿烂相见。`;
+                    isLongMessage = true;
+                } else if (name === '欧阳如景') {
+                    message = `祝你圣诞快乐～ 
+ 
+ 在这个温和的节日里，祝你天天开心。之前的一些小插曲早就过去啦，现在的你还是那个我眼中特别阳光、开朗的女孩。 
+ 
+ 希望你的生活里能一直充满这种明媚的色彩。祝你平安喜乐，万事顺心，新的一年也有很多精彩的故事发生。圣诞节快乐！`;
+                    isLongMessage = false;
+                } else if (name === '蔡思涵') {
+                    message = `圣诞快乐呀，我最优秀的‘全能少女’！ 
+ 
+ 在这个充满亮光和铃声的节日里，我第一个想祝福的就是你。我知道在高中这段紧绷的日子里，你承载了太多的期待。父母的严苛、成绩的波动，偶尔会让你觉得像是困在了一个透明的玻璃罐里，看得到外面的光，却总觉得自己不够好。 
+ 
+ 但我眼里的你，真的闪耀得让人移不开眼：你会用画笔勾勒世界，会用配音赋予角色灵魂，朗诵时的你更是有着一种无可替代的生命力。这些才华，才是你灵魂里最坚固、最美的锦绣，是任何分数都定义不了的。 
+ 
+ 所以，别让那些暂时的焦虑蒙住了你的眼睛。成绩只是通往未来的一张门票，而你的自信和爱好，才是你航行的风帆。新的一年，我祝你成绩优异、心想事成，但更祝你能够‘打开自我’。哪怕外界的声音再嘈杂，也请相信自己是一颗独特的星。 
+ 
+ 挺起胸膛走自己的路吧，那些流言蜚语和苛刻的要求，就让它们随风去。你只管继续画下去、唱下去、优秀下去。你要记住，你本身就是光，不需要借谁的光。`;
+                    isLongMessage = true;
+                } else if (name === '毛乾慧') {
+                    message = `圣诞快乐呀！ 
+ 
+ 在这个大家都忙着庆祝的时刻，我最想把这份平安送给你。其实我一直想跟你说，我从未把你当作‘同级生’或者‘网友’，在我心里，你是一个跨越过风暴、比我更勇敢的姐姐。 
+ 
+ 我知道你偶尔会因为那段‘停顿’的时光而焦虑，会因为现在的学校而觉得底气不足。但我看到的你，是经历了病痛依然坚持走回考场、在平凡生活里依然想要握紧我这个朋友的独立灵魂。学历或许是一张门票，但它绝不是一个人的死刑判决书，更定义不了一个人的高度。 
+ 
+ 所以，真的不用跟我‘见外’。你能跟我做朋友，对我来说也是一种幸运。你担心的‘打扰’，在我看来其实是我们需要彼此的证明。新的一年，我祝你前途似锦，但更祝你能够‘放过自己’。 
+ 
+ 请试着去自信一点、张扬一点吧，你值得去享受最灿烂的阳光。生活这卷书，每个人翻页的速度不同，但这并不影响你那一章的精彩。加油，你只管往前走，我会一直在你身后。`;
+                    isLongMessage = true;
+                } else if (name === '刘瑜婷') {
+                    message = `圣诞快乐呀！ 
+ 
+ 在这个热闹的节日里，我想把最真诚的敬意送给你。我想起你孤身在外求学的这些年，想起你在那些周围人都选择安逸的环境里，一个人默默去图书馆、一个人钻研功课的样子。 
+ 
+ 这次国奖虽然只是‘陪跑’，但请记住：你跑过的路，每一步都算数。能在大二就站在那个赛场上，说明你已经跑在了绝大多数人的前面。环境可能没有那么好，老师可能没那么敬业，但这反而映衬出你的努力是多么的纯粹和高级。 
+ 
+ 愿你心底永远有一团火，去烧掉那些让你厌倦的平庸。不要怕孤独，因为通往高处的路总是人迹罕至的。新的一年，我祝你继续名列前茅，祝你心想事成，更祝你早日凭借这一身才华，去到那个你真正向往的世界。你值得最好的生活，而那一天，已经在路上了。`;
+                    isLongMessage = true;
+                } else if (name === '曹小丽') {
+                    message = `圣诞快乐呀！ 
+ 
+ 在这个有些降温的十二月，特别想对千里的你说声谢谢。谢谢你一直以来的信任，也谢谢你曾经那样毫无保留地拉着我参与进你的生活里。那段分享日常、无话不谈的时光，是我记忆里最鲜活、最温暖的一块碎片。 
+ 
+ 现在的你开始奔赴社会，而我也在继续学业，我们都在为了未来的‘成人世界’各自努力，交流确实不像以前那样频繁了。但我反而觉得，这是我们一起走向成熟的必经之路。 
+ 
+ 我想告诉你，无论我们现在忙到什么程度，以往的那些承诺和默契在我这里永远作数。你永远是我可以无间分享的朋友，也是我随时可以停靠的港湾。新的一年，祝你工作顺心，生活快乐。哪怕我们不再时刻同步，我也依然会在远方为你所有的成就举杯。`;
+                    isLongMessage = true;
+                } else if (name === '罗嘉怡') {
+                    message = `致远方的密友：圣诞快乐。 
+ 
+ 感谢你曾让我在你的日常里停留，那段共享生活的时光，是我莫大的荣幸。如今我们身份各异，步调渐远，但这只是成长的分岔口，而不是友谊的终点站。 
+ 
+ 我想说：交流虽减，情分未变。以往的承诺永远有效，我依然是你最忠实的听众和无间的挚友。愿你步入社会的路铺满鲜花，愿你万事顺心。祝我们都在各自的江湖里，活得精彩。`;
+                    isLongMessage = true;
+                } else if (name === '周倩') {
+                    message = `圣诞快乐呀！ 
+ 
+ 在这个有些降温的十二月，不由得想起咱们国庆一起出去玩的那几天。说真的，在那之前我还没想到咱们能玩得这么合拍，那次旅行绝对是我今年最高光的时刻之一！ 
+ 
+ 特别欣赏你那种乐观大方的性格，感觉只要你在，周围的空气都变得积极起来了。虽然咱们在不同的省份各自奋斗，但一想到有个这么上进的朋友在远方一起努力，我也觉得动力满满呢。 
+ 
+ 新的一年，祝你学业一路绿灯，各种考试都能‘稳稳的’！愿我们的友谊像国庆的阳光一样长久灿烂。下次等咱们都有空，再约一场说走就走的旅行呀！`;
+                    isLongMessage = true;
+                } else if (name === '王璐瑶') {
+                    message = `圣诞快乐，我的跨省好搭子！ 
+ 
+ 回想起国庆假期的点点滴滴，依然觉得那是一段非常珍贵的回忆。感谢你的乐观和周到，让那次旅行变得那么省心又愉快。 
+ 
+ 在不同的城市上大学，虽然见面的机会不多，但看着你每天积极上进的样子，我也深受鼓舞。像你这样优秀的女生，未来一定会有很多精彩的故事发生。 
+ 
+ 祝你在接下来的学期里学业顺利，万事胜意。希望我们的友谊能跨越千里的距离，一直这么纯粹、美好地延续下去。平安夜平安，要一直开心哦！`;
+                    isLongMessage = true;
+                } else if (name === '百折') {
+                    message = `圣诞快乐呀！ 
+ 
+ 在这个忙碌的十二月，特别想把最轻松的祝福送给你。我知道你最近学业挺重的，休息的时间也总是挤出来的，真的辛苦啦。 
+ 
+ 其实我一直想跟你说，跟你一起玩游戏是我最放松的时候。你那么随和、那么善良，这种性格本身就是‘神级天赋’呀。所以呀，千万别为了游戏里的失误而焦虑，咱们玩游戏是为了给生活加点甜，不是为了给自己加作业的～ 
+ 
+ 新的一年，我祝你天天开心，生活愉快。愿你那些压力都能在这个冬天慢慢消融，愿你睡个好觉，做个美梦。不管游戏里发挥得怎么样，在我心里，你永远是那个满分的最佳搭子！`;
+                    isLongMessage = true;
+                } else if (name === 'default') {
+                    message = `圣诞快乐，每一个在十二月奔赴理想的人。 
+ 
+ 无论这一年你是顶着风雪前行，还是在平凡的日子里默默坚持；无论此时的你是正与三五好友围炉煮茶，还是独自在异乡的灯火下忙碌。在这个夜晚，愿你都能卸下所有的焦虑与疲惫。 
+ 
+ 愿你所有的遗憾都能在雪地里消融，所有的努力都能在春天开出花。愿你拥有随时可以停下来的底气，也拥有重新出发的勇气。世界很大，但今晚的温柔很小，小到足以装进你的口袋。祝你平安，祝你自由，祝你永远拥有爱与被爱的能力。`;
+                    isLongMessage = true;
+                }
                 
                 // 创建感谢话语元素
                 const thankYouDiv = document.createElement('div');
                 thankYouDiv.className = 'thank-you-message';
+                
+                // 为公主殿下分支设置更大的宽度和可滚动性
+                if (isLongMessage) {
+                    thankYouDiv.style.cssText = `
+                        width: 90vw !important;
+                        max-width: 900px !important;
+                        max-height: 80vh;
+                        overflow-y: auto;
+                        padding: 2vw;
+                        font-size: 1.8vw;
+                    `;
+                }
                 
                 // 逐字添加到元素中，实现打字效果
                 let index = 0;
@@ -1082,11 +1213,9 @@
                     const readButton = document.createElement('div');
                     readButton.className = 'read-button';
                     readButton.textContent = '已严肃阅读=·=';
-                    readButton.style.cssText = `
-                        position: absolute;
-                        bottom: 20px;
-                        left: 50%;
-                        transform: translateX(-50%);
+                    
+                    // 为长消息设置固定在屏幕底部的按钮
+                    let buttonStyle = `
                         background: linear-gradient(135deg, #ff69b4, #ff1493);
                         color: white;
                         padding: 10px 20px;
@@ -1099,7 +1228,28 @@
                         z-index: 2001;
                     `;
                     
-                    thankYouDiv.appendChild(readButton);
+                    if (isLongMessage) {
+                        // 长消息：按钮固定在屏幕底部，不随滚动条滚动
+                        buttonStyle += `
+                            position: fixed;
+                            bottom: 50px;
+                            left: 50%;
+                            transform: translateX(-50%);
+                        `;
+                        // 添加到body，不添加到感谢语容器中
+                        document.body.appendChild(readButton);
+                    } else {
+                        // 短消息：按钮在感谢语容器底部
+                        buttonStyle += `
+                            position: absolute;
+                            bottom: 20px;
+                            left: 50%;
+                            transform: translateX(-50%);
+                        `;
+                        thankYouDiv.appendChild(readButton);
+                    }
+                    
+                    readButton.style.cssText = buttonStyle;
                     
                     // 淡入效果
                     setTimeout(() => {
@@ -1112,13 +1262,26 @@
                         thankYouDiv.style.animation = 'blurDisappear 0.8s ease-out forwards';
                         readButton.style.opacity = '0';
                         
-                        // 消失后移除元素并开始显示图片
+                        // 消失后移除元素并根据姓名执行不同的效果
                         setTimeout(() => {
                             if (thankYouDiv.parentNode) {
                                 thankYouDiv.remove();
                             }
-                            // 开始显示图片
-                            startImageSequence();
+                            // 移除按钮
+                            if (readButton.parentNode) {
+                                readButton.remove();
+                            }
+                            // 根据姓名执行不同的效果
+                            if (name === '陈玉轩') {
+                                // 开始显示图片序列
+                                startImageSequence();
+                            } else if (name === '陈品地') {
+                                // 开始汉字弹出效果
+                                startCharacterEffect();
+                            } else if (name === '公主殿下' || name === '袁西冉' || name === '欧阳如景' || name === '蔡思涵' || name === '毛乾慧' || name === '刘瑜婷' || name === '曹小丽' || name === '罗嘉怡' || name === '周倩' || name === '王璐瑶' || name === '百折' || name === 'default') {
+                                // 直接显示结束文字
+                                showEndText();
+                            }
                         }, 800);
                     });
                 }
@@ -1321,6 +1484,11 @@
                     charSpan.className = 'end-char-left';
                     charSpan.textContent = firstLineText[i];
                     charSpan.style.animationDelay = `${i * 0.1}s`;
+                    // 为空格添加特殊处理，确保显示
+                    if (firstLineText[i] === ' ') {
+                        charSpan.style.whiteSpace = 'pre';
+                        charSpan.style.marginRight = '10px';
+                    }
                     firstLine.appendChild(charSpan);
                 }
                 
@@ -1335,6 +1503,11 @@
                     charSpan.className = 'end-char-right';
                     charSpan.textContent = secondLineText[i];
                     charSpan.style.animationDelay = `${i * 0.1}s`;
+                    // 为空格添加特殊处理，确保显示
+                    if (secondLineText[i] === ' ') {
+                        charSpan.style.whiteSpace = 'pre';
+                        charSpan.style.marginRight = '10px';
+                    }
                     secondLine.appendChild(charSpan);
                 }
                 
@@ -1349,6 +1522,98 @@
                 setTimeout(() => {
                     endTextContainer.style.opacity = '1';
                 }, 100);
+            }
+            
+            // 陈品地分支的汉字弹出效果
+            function startCharacterEffect() {
+                console.log('开始汉字弹出效果');
+                
+                // 获取屏幕尺寸
+                const screenWidth = window.innerWidth;
+                const screenHeight = window.innerHeight;
+                
+                // 汉字序列
+                const characters = ['陈', '品', '地', '最', '帅'];
+                const charactersContainer = document.createElement('div');
+                charactersContainer.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    pointer-events: none;
+                    z-index: 1500;
+                `;
+                document.body.appendChild(charactersContainer);
+                
+                let allCharacters = [];
+                
+                // 生成单个汉字
+                function createCharacter(char, index) {
+                    const charElement = document.createElement('div');
+                    charElement.textContent = char;
+                    
+                    // 随机样式
+                    const randomColor = `hsl(${Math.random() * 360}, 70%, 60%)`;
+                    const randomAngle = Math.random() * 360;
+                    const randomSize = Math.random() * 60 + 40; // 40-100px，变大1倍
+                    const randomX = Math.random() * (screenWidth - randomSize);
+                    const randomY = Math.random() * (screenHeight - randomSize);
+                    
+                    charElement.style.cssText = `
+                        position: absolute;
+                        left: ${randomX}px;
+                        top: ${randomY}px;
+                        font-size: ${randomSize}px;
+                        color: ${randomColor};
+                        transform: rotate(${randomAngle}deg);
+                        font-weight: bold;
+                        opacity: 0;
+                        animation: popIn 0.3s ease-out forwards;
+                        pointer-events: none;
+                        z-index: ${index + 1000}; // 后面的字层级更高
+                    `;
+                    
+                    charactersContainer.appendChild(charElement);
+                    allCharacters.push(charElement);
+                }
+                
+                // 分批次生成汉字
+                for (let i = 0; i < characters.length; i++) {
+                    setTimeout(() => {
+                        const currentChar = characters[i];
+                        console.log(`开始生成${currentChar}字，共50个`);
+                        
+                        // 生成50个当前汉字
+                        for (let j = 0; j < 50; j++) {
+                            setTimeout(() => {
+                                createCharacter(currentChar, j);
+                            }, j * 40); // 每40ms生成一个，50个共2秒
+                        }
+                        
+                        // 检查是否是最后一个汉字
+                        if (i === characters.length - 1) {
+                            // "帅"字生成完后，1秒后全部模糊消失
+                            setTimeout(() => {
+                                console.log('开始模糊消失所有汉字');
+                                allCharacters.forEach(charElement => {
+                                    charElement.style.animation = 'blurDisappear 1s ease-out forwards';
+                                });
+                                
+                                // 1秒后移除所有汉字，显示结束文字
+                                setTimeout(() => {
+                                    console.log('移除所有汉字，显示结束文字');
+                                    if (charactersContainer.parentNode) {
+                                        charactersContainer.remove();
+                                    }
+                                    allCharacters = [];
+                                    // 显示结束文字
+                                    showEndText();
+                                }, 1000);
+                            }, 1000); // "帅"字生成完后等待1秒
+                        }
+                    }, i * 2000); // 每2秒生成一个汉字类型
+                }
             }
             
             // 启动祝福弹窗
