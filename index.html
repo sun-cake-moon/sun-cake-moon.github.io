@@ -77,17 +77,17 @@
             position: absolute;
             background: linear-gradient(135deg, #ff69b4, #ff1493);
             color: white;
-            padding: 2vw;
-            border-radius: 2vw;
-            box-shadow: 0 1vw 4vw rgba(255, 105, 180, 0.5);
-            border: 0.3vw solid rgba(255, 255, 255, 0.8);
-            animation: popIn 0.5s ease-out, float 3s ease-in-out infinite;
+            padding: 1vw;
+            border-radius: 1vw;
+            box-shadow: 0 0.5vw 2vw rgba(255, 105, 180, 0.4);
+            border: 0.15vw solid rgba(255, 255, 255, 0.7);
+            animation: popIn 0.4s ease-out, float 2.5s ease-in-out infinite;
             cursor: pointer;
             z-index: 1000;
-            max-width: 40vw;
+            max-width: 12vw;
             text-align: center;
             font-weight: bold;
-            font-size: 1.5vw;
+            font-size: 1vw;
         }
         
         @keyframes popIn {
@@ -100,23 +100,46 @@
             50% { transform: translateY(-10px); }
         }
         
+        /* 飞出动画类 */
+        .fly-away {
+            animation: flyAway 3s ease-out forwards !important;
+        }
+        
+        @keyframes flyAway {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 1;
+                filter: blur(0px);
+            }
+            100% {
+                transform: translate(var(--random-x), var(--random-y)) scale(0.5);
+                opacity: 0;
+                filter: blur(5px);
+            }
+        }
+        
         /* 关闭按钮 */
         .close-btn {
             position: absolute;
-            top: 0.5vw;
-            right: 1vw;
-            font-size: 1.5vw;
+            top: 0.2vw;
+            right: 0.5vw;
+            font-size: 0.9vw;
             font-weight: bold;
             background: rgba(255, 255, 255, 0.3);
             border: none;
             color: white;
             cursor: pointer;
             border-radius: 50%;
-            width: 3vw;
-            height: 3vw;
+            width: 2vw;
+            height: 2vw;
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+        
+        /* 弹窗消失动画 */
+        .popup-disappear {
+            animation: blurDisappear 1.5s ease-out forwards !important;
         }
         
         /* 标题 - 使用艺术字体，等比例缩放 */
@@ -211,8 +234,8 @@
         /* 圣诞袜样式 */
         .christmas-sock {
             position: absolute;
-            width: 12vw;
-            height: 16vw;
+            width: 8vw;
+            height: 11vw;
             background-image: url('https://i.imgur.com/IEJ4K07.png');
             background-size: contain;
             background-repeat: no-repeat;
@@ -227,17 +250,17 @@
             position: absolute;
             background: linear-gradient(135deg, #9370db, #8a2be2);
             color: white;
-            padding: 2vw;
-            border-radius: 2vw;
-            box-shadow: 0 1vw 4vw rgba(147, 112, 219, 0.5);
-            border: 0.3vw solid rgba(255, 255, 255, 0.8);
-            animation: popIn 0.5s ease-out, float 3s ease-in-out infinite;
+            padding: 1vw;
+            border-radius: 1vw;
+            box-shadow: 0 0.5vw 2vw rgba(147, 112, 219, 0.4);
+            border: 0.15vw solid rgba(255, 255, 255, 0.7);
+            animation: popIn 0.4s ease-out, float 2.5s ease-in-out infinite;
             cursor: pointer;
             z-index: 1000;
-            max-width: 40vw;
+            max-width: 12vw;
             text-align: center;
             font-weight: bold;
-            font-size: 1.5vw;
+            font-size: 1vw;
         }
         
         /* 最终提示文字样式 */
@@ -265,8 +288,8 @@
         /* 驯鹿样式 */
         .reindeer {
             position: fixed;
-            width: 40vw;
-            height: 27vw;
+            width: 30vw;
+            height: 20vw;
             background-image: url('https://i.imgur.com/KqcWzK9.png');
             background-size: contain;
             background-repeat: no-repeat;
@@ -274,7 +297,7 @@
             z-index: 100;
             top: 50%;
             transform: translateY(-50%);
-            right: -40vw;
+            right: -30vw;
             opacity: 0;
             /* 尝试处理图片背景，增强与页面背景的融合 */
             mix-blend-mode: multiply;
@@ -350,6 +373,126 @@
             box-shadow: none !important;
         }
         
+        /* 输入对话框样式 */
+        .name-dialog {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: linear-gradient(135deg, #ff9a9e, #fecfef);
+            border-radius: 2vw;
+            padding: 3vw;
+            box-shadow: 0 2vw 5vw rgba(255, 105, 180, 0.5);
+            z-index: 2000;
+            width: 60vw;
+            max-width: 500px;
+            animation: dialogAppear 0.5s ease-out forwards;
+        }
+        
+        @keyframes dialogAppear {
+            to {
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+        
+        .dialog-title {
+            text-align: center;
+            color: #ff69b4;
+            font-size: 3vw;
+            margin-bottom: 2vw;
+            font-family: 'Brush Script MT', cursive, serif;
+        }
+        
+        .input-container {
+            display: flex;
+            align-items: center;
+            gap: 1vw;
+            margin-bottom: 2vw;
+        }
+        
+        .input-label {
+            color: #ff1493;
+            font-weight: bold;
+            font-size: 2vw;
+            white-space: nowrap;
+        }
+        
+        .name-input {
+            flex: 1;
+            padding: 1vw;
+            border: 0.3vw solid #ff69b4;
+            border-radius: 1vw;
+            font-size: 2vw;
+            outline: none;
+            background: rgba(255, 255, 255, 0.8);
+        }
+        
+        .name-input:focus {
+            border-color: #ff1493;
+            box-shadow: 0 0 1vw rgba(255, 105, 180, 0.5);
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
+            color: white;
+            border: none;
+            padding: 1vw 2vw;
+            border-radius: 1vw;
+            font-size: 2vw;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.2s ease;
+        }
+        
+        .submit-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        /* 感谢话语样式 */
+        .thank-you-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #ff9a9e, #fecfef);
+            border-radius: 2vw;
+            padding: 3vw;
+            box-shadow: 0 2vw 5vw rgba(255, 105, 180, 0.5);
+            z-index: 2000;
+            width: 80vw;
+            max-width: 600px;
+            text-align: center;
+            color: #ff1493;
+            font-size: 2vw;
+            line-height: 1.6;
+            opacity: 0;
+            animation: messageAppear 1s ease-out forwards;
+        }
+        
+        @keyframes messageAppear {
+            to {
+                opacity: 1;
+            }
+        }
+        
+        /* 消息字符动画 */
+        .message-char {
+            opacity: 0;
+            animation: fadeInUp 0.3s ease-out forwards;
+            display: inline-block;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
         /* 从左到右淡入动画 */
         @keyframes fadeInLeft {
             from {
@@ -360,6 +503,48 @@
                 opacity: 1;
                 transform: translateX(0);
             }
+        }
+        
+        /* 从右到左淡入动画 */
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        /* 结束文字样式 */
+        .end-text {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 2000;
+        }
+        
+        .end-line {
+            font-family: 'Brush Script MT', cursive, serif;
+            font-size: 4vw;
+            color: #ff69b4;
+            margin: 10px 0;
+        }
+        
+        /* 结束文字字符样式 */
+        .end-char-left {
+            opacity: 0;
+            animation: fadeInLeft 0.5s ease-out forwards;
+            display: inline-block;
+        }
+        
+        .end-char-right {
+            opacity: 0;
+            animation: fadeInRight 0.5s ease-out forwards;
+            display: inline-block;
         }
         
         /* 柔和的发光效果，保留周围光效 */
@@ -798,33 +983,447 @@
                 }, 1000);
             }
             
+            // 显示姓名输入对话框
+            function showNameInputDialog() {
+                // 创建对话框元素
+                const dialog = document.createElement('div');
+                dialog.className = 'name-dialog';
+                
+                dialog.innerHTML = `
+                    <h2 class="dialog-title">请输入你的名字</h2>
+                    <div class="input-container">
+                        <span class="input-label">Name:</span>
+                        <input type="text" class="name-input" placeholder="请输入姓名" maxlength="10">
+                        <button class="submit-btn">提交</button>
+                    </div>
+                `;
+                
+                document.body.appendChild(dialog);
+                
+                // 获取输入框和提交按钮
+                const input = dialog.querySelector('.name-input');
+                const submitBtn = dialog.querySelector('.submit-btn');
+                
+                // 处理提交事件
+                function handleSubmit() {
+                    const name = input.value.trim();
+                    if (name) {
+                        // 移除对话框
+                        dialog.remove();
+                        
+                        // 根据输入内容处理分支
+                        handleNameBranch(name);
+                    }
+                }
+                
+                // 点击提交按钮
+                submitBtn.addEventListener('click', handleSubmit);
+                
+                // 按下回车键
+                input.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        handleSubmit();
+                    }
+                });
+            }
+            
+            // 处理姓名分支
+            function handleNameBranch(name) {
+                if (name === '陈玉轩') {
+                    // 显示感谢话语
+                    showThankYouMessage();
+                } else {
+                    // 其他分支可以在这里添加
+                    console.log('其他姓名分支');
+                }
+            }
+            
+            // 显示感谢话语
+            function showThankYouMessage() {
+                const message = `回想起来，这一年我们好像做了很多大事，又好像全是些没意义的小事。 
+ 
+ 我们在雪地里深一脚浅一脚，在博物馆里装模作样，在图书馆里集体摸鱼，还在半夜仰着脖子等那轮月亮…… 
+ 
+ 但我发现，比起这些事本身，我更记得和你在一起时的底噪——是你的笑声，是不知为何疯狂互刷的表情包，是那些莫名其妙的默契。 感谢你陪我虚度了这么多光阴，让这些琐碎的日子闪闪发光。 圣诞快乐！以后，请继续出现在我的冒险清单里吧。`;
+                
+                // 创建感谢话语元素
+                const thankYouDiv = document.createElement('div');
+                thankYouDiv.className = 'thank-you-message';
+                
+                // 逐字添加到元素中，实现打字效果
+                let index = 0;
+                let isMessageComplete = false;
+                
+                function addNextChar() {
+                    if (index < message.length) {
+                        const char = message[index];
+                        const charSpan = document.createElement('span');
+                        charSpan.className = 'message-char';
+                        charSpan.textContent = char;
+                        // 设置动画延迟，实现逐字出现效果
+                        charSpan.style.animationDelay = `${index * 0.03}s`;
+                        thankYouDiv.appendChild(charSpan);
+                        index++;
+                        setTimeout(addNextChar, 30);
+                    } else {
+                        isMessageComplete = true;
+                        // 文字全部出现后，5秒后显示"已严肃阅读=·="
+                        setTimeout(() => {
+                            showReadButton();
+                        }, 5000);
+                    }
+                }
+                
+                document.body.appendChild(thankYouDiv);
+                addNextChar();
+                
+                // 显示"已严肃阅读=·="按钮
+                function showReadButton() {
+                    const readButton = document.createElement('div');
+                    readButton.className = 'read-button';
+                    readButton.textContent = '已严肃阅读=·=';
+                    readButton.style.cssText = `
+                        position: absolute;
+                        bottom: 20px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        background: linear-gradient(135deg, #ff69b4, #ff1493);
+                        color: white;
+                        padding: 10px 20px;
+                        border-radius: 20px;
+                        cursor: pointer;
+                        font-size: 1.2vw;
+                        font-weight: bold;
+                        opacity: 0;
+                        transition: opacity 0.5s ease;
+                        z-index: 2001;
+                    `;
+                    
+                    thankYouDiv.appendChild(readButton);
+                    
+                    // 淡入效果
+                    setTimeout(() => {
+                        readButton.style.opacity = '1';
+                    }, 100);
+                    
+                    // 点击事件
+                    readButton.addEventListener('click', () => {
+                        // 感谢文字和按钮模糊消失
+                        thankYouDiv.style.animation = 'blurDisappear 0.8s ease-out forwards';
+                        readButton.style.opacity = '0';
+                        
+                        // 消失后移除元素并开始显示图片
+                        setTimeout(() => {
+                            if (thankYouDiv.parentNode) {
+                                thankYouDiv.remove();
+                            }
+                            // 开始显示图片
+                            startImageSequence();
+                        }, 800);
+                    });
+                }
+            }
+            
+            // 图片序列数据 - 使用完整的GitHub Pages URL
+            const imageSequence = {
+                part1: [
+                    'https://sun-cake-moon.github.io/museum1.jpg',
+                    'https://sun-cake-moon.github.io/museum2.jpg',
+                    'https://sun-cake-moon.github.io/museum3.jpg',
+                    'https://sun-cake-moon.github.io/museum4.jpg',
+                    'https://sun-cake-moon.github.io/museum5.jpg',
+                    'https://sun-cake-moon.github.io/museum6.jpg',
+                    'https://sun-cake-moon.github.io/museum7.jpg',
+                    'https://sun-cake-moon.github.io/museum8.jpg'
+                ],
+                part2: [
+                    'https://sun-cake-moon.github.io/moon1.jpg',
+                    'https://sun-cake-moon.github.io/moon2.jpg',
+                    'https://sun-cake-moon.github.io/moon3.jpg',
+                    'https://sun-cake-moon.github.io/moon4.jpg',
+                    'https://sun-cake-moon.github.io/moon5.jpg',
+                    'https://sun-cake-moon.github.io/moon6.jpg',
+                    'https://sun-cake-moon.github.io/moon7.jpg',
+                    'https://sun-cake-moon.github.io/moon8.jpg',
+                    'https://sun-cake-moon.github.io/moon9.jpg'
+                ],
+                part3: [
+                    'https://sun-cake-moon.github.io/snow1.jpg',
+                    'https://sun-cake-moon.github.io/snow2.jpg',
+                    'https://sun-cake-moon.github.io/snow3.jpg',
+                    'https://sun-cake-moon.github.io/snow4.jpg',
+                    'https://sun-cake-moon.github.io/snow5.jpg'
+                ],
+                part4: [
+                    'https://sun-cake-moon.github.io/girl1.jpg',
+                    'https://sun-cake-moon.github.io/girl2.jpg',
+                    'https://sun-cake-moon.github.io/girl3.jpg',
+                    'https://sun-cake-moon.github.io/girl4.jpg',
+                    'https://sun-cake-moon.github.io/girl5.jpg',
+                    'https://sun-cake-moon.github.io/girl6.jpg',
+                    'https://sun-cake-moon.github.io/girl7.jpg'
+                ]
+            };
+            
+            // 开始图片序列显示
+            function startImageSequence() {
+                console.log('开始图片序列显示');
+                
+                // 获取屏幕尺寸
+                const screenWidth = window.innerWidth;
+                const screenHeight = window.innerHeight;
+                const shortSide = Math.min(screenWidth, screenHeight);
+                const imageHeight = (shortSide * 2) / 3; // 纵边是屏幕短边的2/3
+                
+                let currentPart = 0;
+                const parts = [imageSequence.part1, imageSequence.part2, imageSequence.part3, imageSequence.part4];
+                
+                // 显示单个部分的图片
+                function showPart(partImages) {
+                    console.log('显示第', currentPart + 1, '部分图片，共', partImages.length, '张');
+                    const imagesOnScreen = [];
+                    
+                    // 创建图片并随机分布在屏幕上
+                    partImages.forEach((imageUrl, index) => {
+                        setTimeout(() => {
+                            // 创建图片容器
+                            const imgContainer = document.createElement('div');
+                            imgContainer.className = 'sequence-image-container';
+                            imgContainer.style.cssText = `
+                                position: fixed;
+                                height: ${imageHeight}px;
+                                width: auto;
+                                min-width: 250px;
+                                max-width: 350px;
+                                background: linear-gradient(135deg, #ff9a9e, #fecfef);
+                                border: 2px solid white;
+                                border-radius: 1vw;
+                                box-shadow: 0 0.5vw 2vw rgba(0, 0, 0, 0.3);
+                                opacity: 0;
+                                animation: popIn 0.5s ease-out forwards, float 3s ease-in-out infinite;
+                                z-index: 1000;
+                                cursor: pointer;
+                                pointer-events: auto;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                color: white;
+                                font-size: 2vw;
+                                font-weight: bold;
+                                text-align: center;
+                                padding: 10px;
+                            `;
+                            
+                            // 创建图片元素
+                            const img = document.createElement('img');
+                            img.src = imageUrl;
+                            img.style.cssText = `
+                                max-height: calc(100% - 20px);
+                                max-width: calc(100% - 20px);
+                                object-fit: cover;
+                                border-radius: 0.5vw;
+                            `;
+                            
+                            // 添加图片到容器
+                            imgContainer.appendChild(img);
+                            
+                            // 随机位置 - 确保图片完全在屏幕内
+                            const imgWidth = 350; // 最大宽度
+                            const maxX = screenWidth - imgWidth;
+                            const maxY = screenHeight - imageHeight;
+                            const posX = Math.random() * maxX;
+                            const posY = Math.random() * maxY;
+                            imgContainer.style.left = posX + 'px';
+                            imgContainer.style.top = posY + 'px';
+                            
+                            document.body.appendChild(imgContainer);
+                            imagesOnScreen.push(imgContainer);
+                            console.log('图片', index + 1, '已创建并添加到屏幕，停留3秒');
+                            
+                            // 每张图片停留3秒后，下一张图片出现
+                            // 注意：这里的index * 3000确保了每张图片间隔3秒出现
+                            // 但整体部分的停留时间逻辑也需要调整
+                            
+                            // 添加图片加载错误处理
+                            img.onerror = function() {
+                                console.log('图片', index + 1, '加载失败，显示占位符');
+                                // 显示占位符文本
+                                imgContainer.innerHTML = `
+                                    <div style="text-align: center;">
+                                        <div style="font-size: 3vw; margin-bottom: 10px;">🎄</div>
+                                        <div>图片 ${index + 1}</div>
+                                        <div>圣诞快乐！</div>
+                                    </div>
+                                `;
+                            };
+                            
+                            // 添加图片加载成功处理
+                            img.onload = function() {
+                                console.log('图片', index + 1, '加载成功');
+                            };
+                        }, index * 3000); // 每张图片间隔3秒出现，满足停留时间要求
+                    });
+                    
+                    // 等待所有图片出现，每张图片停留3秒，所以不需要额外停留
+                    const totalWaitTime = partImages.length * 3000;
+                    console.log('等待', totalWaitTime, 'ms后开始模糊消失');
+                    console.log('每张图片停留3秒，共', partImages.length, '张，总时长', totalWaitTime, 'ms');
+                    
+                    setTimeout(() => {
+                        console.log('开始模糊消失第', currentPart + 1, '部分图片');
+                        // 所有图片模糊消失
+                        imagesOnScreen.forEach(img => {
+                            img.style.animation = 'blurDisappear 1.5s ease-out forwards';
+                            setTimeout(() => {
+                                if (img.parentNode) {
+                                    img.remove();
+                                }
+                            }, 1500);
+                        });
+                        
+                        // 进入下一部分
+                        setTimeout(() => {
+                            currentPart++;
+                            if (currentPart < parts.length) {
+                                console.log('进入第', currentPart + 1, '部分');
+                                showPart(parts[currentPart]);
+                            } else {
+                                console.log('所有图片序列显示完成，开始显示结束文字');
+                                // 显示结束文字
+                                showEndText();
+                            }
+                        }, 2000); // 等待模糊动画完成
+                    }, totalWaitTime);
+                }
+                
+                // 开始显示第一部分
+                showPart(parts[currentPart]);
+            }
+            
+            // 显示结束文字
+            function showEndText() {
+                console.log('开始显示结束文字');
+                
+                // 创建结束文字容器
+                const endTextContainer = document.createElement('div');
+                endTextContainer.className = 'end-text';
+                endTextContainer.style.opacity = '0';
+                endTextContainer.style.transition = 'opacity 0.5s ease';
+                
+                // 创建第一行文字：The end~（从左到右出现）
+                const firstLine = document.createElement('div');
+                firstLine.className = 'end-line';
+                const firstLineText = 'The end~';
+                
+                // 将第一行文字拆分为单个字符，从左到右出现
+                for (let i = 0; i < firstLineText.length; i++) {
+                    const charSpan = document.createElement('span');
+                    charSpan.className = 'end-char-left';
+                    charSpan.textContent = firstLineText[i];
+                    charSpan.style.animationDelay = `${i * 0.1}s`;
+                    firstLine.appendChild(charSpan);
+                }
+                
+                // 创建第二行文字：Best wishes（从右到左出现）
+                const secondLine = document.createElement('div');
+                secondLine.className = 'end-line';
+                const secondLineText = 'Best wishes';
+                
+                // 将第二行文字拆分为单个字符，从右到左出现
+                for (let i = 0; i < secondLineText.length; i++) {
+                    const charSpan = document.createElement('span');
+                    charSpan.className = 'end-char-right';
+                    charSpan.textContent = secondLineText[i];
+                    charSpan.style.animationDelay = `${i * 0.1}s`;
+                    secondLine.appendChild(charSpan);
+                }
+                
+                // 添加到容器
+                endTextContainer.appendChild(firstLine);
+                endTextContainer.appendChild(secondLine);
+                
+                // 添加到页面
+                document.body.appendChild(endTextContainer);
+                
+                // 淡入效果
+                setTimeout(() => {
+                    endTextContainer.style.opacity = '1';
+                }, 100);
+            }
+            
             // 启动祝福弹窗
             function startWishesPopup() {
                 // 动态调整弹窗速度，越到后面越快
                 let interval = 750; // 初始间隔750ms
                 const minInterval = 100; // 最小间隔100ms
                 const intervalDecrease = 50; // 每次减少50ms
-                let popupInterval = null;
+                let popupTimeout = null;
+                let isStopped = false;
                 
                 function createPopupWithIncreasingSpeed() {
+                    if (isStopped) return;
+                    
                     createPopup();
                     // 缩短间隔，直到达到最小间隔
                     if (interval > minInterval) {
                         interval -= intervalDecrease;
                     }
                     // 递归调用，实现动态调整速度
-                    popupInterval = setTimeout(createPopupWithIncreasingSpeed, interval);
+                    popupTimeout = setTimeout(createPopupWithIncreasingSpeed, interval);
                 }
                 
                 // 开始创建弹窗
                 createPopupWithIncreasingSpeed();
                 
-                // 20秒后停止弹窗
+                // 22秒后停止弹窗
                 setTimeout(() => {
-                    if (popupInterval) {
-                        clearTimeout(popupInterval);
+                    isStopped = true;
+                    if (popupTimeout) {
+                        clearTimeout(popupTimeout);
+                        popupTimeout = null;
                     }
-                }, 20000); // 20秒后停止
+                    
+                    console.log('弹窗已停止生成');
+                    
+                    // 5秒后让所有弹窗模糊飞出或消失
+                    setTimeout(() => {
+                        console.log('开始执行弹窗模糊飞出或消失动画');
+                        const allPopups = document.querySelectorAll('.wish-popup, .purple-popup');
+                        console.log('找到弹窗数量:', allPopups.length);
+                        
+                        allPopups.forEach((popup, index) => {
+                            // 为每个弹窗设置随机飞出方向
+                            const randomX = Math.random() * 1000 - 500; // -500到500px的随机X偏移
+                            const randomY = Math.random() * 1000 - 500; // -500到500px的随机Y偏移
+                            
+                            // 转换为CSS变量
+                            popup.style.setProperty('--random-x', randomX + 'px');
+                            popup.style.setProperty('--random-y', randomY + 'px');
+                            
+                            // 清除现有动画，应用新的模糊飞出动画
+                            popup.style.animation = 'none';
+                            
+                            // 使用setTimeout确保animation:none生效
+                            setTimeout(() => {
+                                // 只应用flyAway动画，它已经包含了模糊效果
+                                popup.style.animation = 'flyAway 1.5s ease-out forwards';
+                            }, 10);
+                            
+                            // 1.5秒后移除元素（匹配动画时长）
+                            setTimeout(() => {
+                                if (popup.parentNode) {
+                                    popup.remove();
+                                }
+                            }, 1500);
+                        });
+                        
+                        // 等待动画结束后，显示输入对话框
+                        setTimeout(() => {
+                            console.log('显示输入对话框');
+                            showNameInputDialog();
+                        }, 2000); // 等待2秒确保动画完成
+                    }, 5000);
+                }, 22000); // 22秒后停止
             }
             
             // 圣诞袜点击事件
